@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
         const ext = MINE_TYPE_MAP[file.mimetype];
         cb(null, name + '-' + Date.now() + '.' + ext );
 
-    }   
+    }
 });
 
 router.post("",multer({storage: storage}).single('image') ,(req, res, next) => {
@@ -33,7 +33,7 @@ router.post("",multer({storage: storage}).single('image') ,(req, res, next) => {
     const post = new Post({
         title: req.body.title,
         content: req.body.content,
-        imagePath: url + 'images' + requ.file.filename
+        imagePath: url + '/images/' + req.file.filename
     });
     post.save()
         .then(createdPost => {
@@ -61,7 +61,16 @@ router.put("/:id", (req, res, next) => {
 });
 
 router.get("", (req, res, next) => {
-    Post.find().then(document => {
+    const pageSize = +req.query.pageSize;
+    const currentPage = +req.query.page;
+    const postQuery = Post.find();
+
+    if( pageSize && currentPage ){
+      postQuery
+        .skip(pageSize * (currentPage -1))
+        .limit(pageSize)
+    }
+    postQuery.find().then(document => {
         res.status(200).json({
             message: 'Posts fetched successfully!',
             posts: document
