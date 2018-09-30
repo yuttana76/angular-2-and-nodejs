@@ -1,0 +1,67 @@
+
+
+  <mat-horizontal-stepper #stepper>
+      
+    <mat-step [stepControl]="firstFormGroup">
+      <div class='div-content'>
+        <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Created by RM.</ng-template>
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Personal data
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Type your name and age
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+            
+                <mat-form-field>
+                  <input matInput placeholder="First name">
+                </mat-form-field>
+            
+                <mat-form-field>
+                  <input matInput placeholder="Age">
+                </mat-form-field>
+              </mat-expansion-panel>
+
+        </mat-accordion>
+        </form>
+      </div>
+    </mat-step>
+    
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Approve by Level 2</ng-template>
+
+        <mat-accordion>
+            Approve by Level 2
+      </mat-accordion>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Approve by Level 3</ng-template>
+  
+          <mat-accordion>
+              Approve by Level 3
+        </mat-accordion>
+        </form>
+      </mat-step>
+  
+
+      <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Confirm</ng-template>
+    
+            <mat-accordion>
+                Confirm
+          </mat-accordion>
+          </form>
+        </mat-step>
+
+
+  </mat-horizontal-stepper>
+  

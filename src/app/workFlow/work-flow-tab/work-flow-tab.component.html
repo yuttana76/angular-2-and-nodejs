@@ -1,0 +1,63 @@
+<mat-accordion>
+
+  <mat-expansion-panel *ngFor="let item of wfTrans;let i = index">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{i+1}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{item.Flow}}
+      </mat-panel-description>
+
+      <mat-panel-description>
+        <i *ngIf="item.WFStatus === 'Y'" class="fas fa-check-circle fa-2x wfStatus-icon"></i>
+      </mat-panel-description>
+
+    </mat-expansion-panel-header>
+
+    <mat-card>
+
+      <div *ngIf="item.WFStatus !== 'NA'">
+        <mat-list>
+          <mat-list-item> <strong>Status</strong>&nbsp;
+            <i *ngIf="item.WFStatus === 'Y'">APPROVED</i>
+            <i *ngIf="item.WFStatus === 'R'">REJECTED</i>
+          </mat-list-item>
+          <mat-list-item>
+            <strong>Comment</strong>
+            &nbsp; <span>{{item.Comment}}</span>
+          </mat-list-item>
+          <mat-list-item> <strong>Action By</strong>&nbsp; {{item.ActionBy}}</mat-list-item>
+          <mat-list-item> <strong>Action Date</strong>&nbsp; {{item.ActionDate}} </mat-list-item>
+        </mat-list>
+      </div>
+
+      <div *ngIf="item.WFStatus === 'NA'">
+        <form #myForm="ngForm" class="example-form" >
+          <mat-form-field class="example-full-width">
+            <strong>Status</strong>&nbsp;
+            <mat-radio-group [(ngModel)]="workFlowTrans.WFStatus">
+              <mat-radio-button value="NA">Not dicisition</mat-radio-button>
+              <mat-radio-button value="Y">Approve</mat-radio-button>
+              <mat-radio-button value="R">Reject</mat-radio-button>
+            </mat-radio-group>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <strong>Comment</strong>
+              <!-- <span><textarea mat rows="3" [(ngModel)]="workFlowTrans.Comment" ></textarea> </span> -->
+              <textarea matInput placeholder="Leave a comment" [(ngModel)]="workFlowTrans.Comment"></textarea>
+          </mat-form-field>
+
+          <mat-card-actions>
+            <button mat-button (click)="onSave()">Save</button>
+          </mat-card-actions>
+        </form>
+      </div>
+
+    </mat-card>
+  </mat-expansion-panel>
+
+
+
+</mat-accordion>
