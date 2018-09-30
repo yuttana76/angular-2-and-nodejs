@@ -5,7 +5,12 @@ import {
   MatToolbarModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatStepperModule,
+  MatIconModule,
+  MatListModule,
+  MatGridListModule,
+  MatRadioModule
 } from '@angular/material';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +28,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { WorkFlowStepperComponent } from './workFlow/work-flow-stepper/work-flow-stepper.component';
+import { WorkFlowTabComponent } from './workFlow/work-flow-tab/work-flow-tab.component';
 // import { SignupComponent } from 'src/app/auth/signup/signup.component';
 
 
@@ -33,7 +40,9 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     HeaderComponent,
     PostListComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    WorkFlowStepperComponent,
+    WorkFlowTabComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +57,12 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-    HttpClientModule
+    MatStepperModule,
+    MatIconModule,
+    HttpClientModule,
+    MatListModule,
+    MatGridListModule,
+    MatRadioModule
   ],
   providers: [
     {
