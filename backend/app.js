@@ -1,11 +1,20 @@
 const path = require("path");
 const express = require('express');
+const helmet = require('helmet')
+var compression = require('compression');
+
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const postsRoutes = require('./routes/posts');
 const userRoutes = require('./routes/user');
 
+var logger = require('./config/winston');
+
 const app = express();
+app.use(helmet())
+app.use(compression());
+
+app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }))
 
 // Mongo Shell here!
 // /Users/macbookair/Projects/mongodb-shell/bin
@@ -14,6 +23,8 @@ mongoose.connect('mongodb+srv://someone:PGSsnKkkxbgN8zAt@cluster0-6vwxi.mongodb.
         console.log('Connection DB. successful');
     })
     .catch(() => {
+        logger.info( `Connection DB. fail ! - ${require.originalUrl} - ${require.ip} `);
+        
         console.log('Connection DB. fail !');
     });
 
